@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Paramjit Saha | SDE 3 @PayPal | Backend Engineer
+  </title>
+  <meta content="Portfolio and mentorship booking for Paramjit Saha, Backend Engineer at PayPal specializing in Java, Spring Boot, and Cloud Architecture." name="description"/>
+  <!-- Fonts -->
+  
+  
+  <style type="text/css">@font-face {font-family:Space Grotesk;font-style:normal;font-weight:300;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:300;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:300;src:url(/cf-fonts/v/space-grotesk/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:400;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:400;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:400;src:url(/cf-fonts/v/space-grotesk/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:500;src:url(/cf-fonts/v/space-grotesk/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:500;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:500;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:600;src:url(/cf-fonts/v/space-grotesk/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:600;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:600;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:700;src:url(/cf-fonts/v/space-grotesk/5.0.16/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:700;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:700;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
+  <!-- Icons & Tailwind -->
+  <script src="https://unpkg.com/lucide@latest">
+  </script>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script>
+   tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['"Space Grotesk"', 'sans-serif'],
+                        'body': ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        // Palette derived from the Bali photo:
+                        // Deep charcoal (T-shirt), Cool stone/gray (Path), Teal/Cyan (Backpack)
+                        'primary': '#111827',     // Dark charcoal
+                        'secondary': '#374151',   // Muted stone
+                        'accent': '#06b6d4',      // Teal/Cyan (Backpack color)
+                        'surface': '#ffffff',     // White
+                        'background': '#f3f4f6',  // Light gray path color
+                        'nature': '#3f6212',      // Deep organic green (subtle accents)
+                    },
+                    backgroundImage: {
+                        'noise': "url('https://grainy-gradients.vercel.app/noise.svg')",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(40px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+  </script>
+  <style>
+   /* Custom Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #111827 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hide scrollbar for horizontal scroll containers */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Staggered Animation Classes */
+        .reveal-on-scroll { opacity: 0; }
+  </style>
+ 
+<style>
+  /* Remix CTA Styles */
+  .topmate-remix-cta {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 10000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: topmateRemixFadeIn 0.4s ease-out 1.5s forwards;
+  }
+
+  .topmate-remix-btn {
+    background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    animation: topmateRemixFloat 3s ease-in-out infinite;
+  }
+
+  .topmate-remix-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+  }
+
+  .topmate-remix-btn:active {
+    transform: scale(0.98);
+  }
+
+  .topmate-remix-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .topmate-remix-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  .topmate-remix-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+
+  .topmate-remix-action {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .topmate-remix-brand {
+    font-size: 11px;
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  /* Shine effect */
+  .topmate-remix-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+
+  .topmate-remix-btn:hover::before {
+    left: 100%;
+  }
+
+  /* Loading spinner */
+  .topmate-remix-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: topmateRemixSpin 1s linear infinite;
+    display: none;
+  }
+
+  .topmate-remix-btn.loading .topmate-remix-spinner {
+    display: block;
+  }
+
+  .topmate-remix-btn.loading .topmate-remix-icon {
+    display: none;
+  }
+
+  /* Toast notification */
+  .topmate-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 99999;
+    background: #ffffff;
+    color: #1f2937;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #3B82F6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    max-width: 320px;
+    min-width: 280px;
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .topmate-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .topmate-toast.error {
+    border-left-color: #EF4444;
+    background: #fef2f2;
+    color: #991b1b;
+  }
+
+  .topmate-toast.success {
+    border-left-color: #10B981;
+    background: #f0fdf4;
+    color: #065f46;
+  }
+
+  .topmate-toast.info {
+    border-left-color: #3B82F6;
+    background: #eff6ff;
+    color: #1e40af;
+  }
+
+  /* Animations */
+  @keyframes topmateRemixFadeIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes topmateRemixFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+
+  @keyframes topmateRemixSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .topmate-remix-cta {
+      bottom: 20px;
+      right: 20px;
+    }
+    
+    .topmate-remix-btn {
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+    
+    .topmate-toast {
+      right: 16px;
+      left: 16px;
+      top: 20px;
+      max-width: none;
+      min-width: auto;
+      width: auto;
+      font-size: 13px;
+      padding: 14px 16px;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    .topmate-toast {
+      right: 12px;
+      left: 12px;
+      top: 16px;
+      font-size: 12px;
+      padding: 12px 14px;
+    }
+  }
+</style>
+</head>
+ <body class="font-body bg-background text-primary antialiased selection:bg-accent selection:text-white">
+  <!-- Noise Texture Overlay -->
+  <div class="noise-bg">
+  </div>
+  <!-- Navigation -->
+  <nav class="fixed w-full z-40 top-0 transition-all duration-300 p-4 sm:p-6">
+   <div class="max-w-6xl mx-auto glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-sm">
+    <a class="font-display font-bold text-lg tracking-tight hover:text-accent transition-colors" href="#">
+     Paramjit
+     <span class="text-accent">
+      .
+     </span>
+    </a>
+    <div class="hidden md:flex gap-8 text-sm font-medium text-secondary">
+     <a class="hover:text-primary transition-colors" href="#about">
+      About
+     </a>
+     <a class="hover:text-primary transition-colors" href="#services">
+      Mentorship
+     </a>
+     <a class="hover:text-primary transition-colors" href="#testimonials">
+      Stories
+     </a>
+    </div>
+    <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-accent hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5" href="#services">
+     Book a Session
+    </a>
+   </div>
+  </nav>
+  <!-- Hero Section -->
+  <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden">
+   <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <!-- Text Content -->
+    <div class="order-2 lg:order-1 flex flex-col items-start z-10">
+     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold tracking-wider uppercase mb-6 animate-slide-up" style="animation-delay: 0.1s;">
+      <span class="w-2 h-2 rounded-full bg-accent animate-pulse">
+      </span>
+      Open for Mentorship
+     </div>
+     <h1 class="font-display text-5xl lg:text-7xl font-bold leading-[1.1] mb-6 animate-slide-up" style="animation-delay: 0.2s;">
+      Master Backend
+      <br/>
+      <span class="text-gradient">
+       Engineering.
+      </span>
+     </h1>
+     <p class="text-lg text-secondary max-w-lg mb-8 leading-relaxed animate-slide-up" style="animation-delay: 0.3s;">
+      SDE 3 @PayPal. Ex-Oracle, Ex-IBM. I help aspiring engineers crack top tech roles and master Java, Spring Boot, &amp; Cloud Architecture.
+     </p>
+     <div class="flex flex-wrap gap-4 animate-slide-up" style="animation-delay: 0.4s;">
+      <a class="group relative px-8 py-4 bg-primary text-white rounded-full font-semibold overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300" href="#services">
+       <span class="relative z-10 flex items-center gap-2">
+        Explore Mentorship
+        <i class="w-4 h-4 group-hover:translate-x-1 transition-transform" data-lucide="arrow-right">
+        </i>
+       </span>
+       <div class="absolute inset-0 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300">
+       </div>
+      </a>
+      <a class="px-8 py-4 bg-white border border-gray-200 text-primary rounded-full font-semibold hover:border-primary transition-colors flex items-center gap-2" href="https://linkedin.com/in/paramjitsaha" target="_blank">
+       <i class="w-4 h-4" data-lucide="linkedin">
+       </i>
+       LinkedIn
+      </a>
+     </div>
+     <!-- Tech Stack Strip -->
+     <div class="mt-12 pt-8 border-t border-gray-200 w-full animate-slide-up" style="animation-delay: 0.5s;">
+      <p class="text-xs text-secondary mb-4 font-mono uppercase tracking-widest">
+       Expertise in
+      </p>
+      <div class="flex flex-wrap gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+       <img alt="Java" class="h-8 w-8 hover:scale-110 transition-transform" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" title="Java"/>
+       <img alt="Spring Boot" class="h-8 w-8 hover:scale-110 transition-transform" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" title="Spring Boot"/>
+       <img alt="AWS" class="h-8 w-8 hover:scale-110 transition-transform" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" title="AWS"/>
+       <img alt="GCP" class="h-8 w-8 hover:scale-110 transition-transform" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" title="GCP"/>
+       <img alt="JS" class="h-8 w-8 hover:scale-110 transition-transform" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="JavaScript"/>
+      </div>
+     </div>
+    </div>
+    <!-- Hero Image / Visual -->
+    <div class="order-1 lg:order-2 relative flex justify-center lg:justify-end animate-slide-up" style="animation-delay: 0.3s;">
+     <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+      <!-- Decorative Elements matching the Bali vibe (Nature + Structure) -->
+      <div class="absolute inset-0 rounded-full border border-gray-300 rotate-6 transform scale-105">
+      </div>
+      <div class="absolute inset-0 rounded-full border border-accent/20 -rotate-3 transform scale-110">
+      </div>
+      <!-- Profile Image -->
+      <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-white shadow-2xl z-10">
+       <img alt="Paramjit Saha" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://static.topmate.io/xaDzJdSi1kFPeKDgwRfJsd.png"/>
+      </div>
+      <!-- Floating Badge -->
+      <div class="absolute -bottom-4 -left-4 z-20 glass-panel px-5 py-3 rounded-2xl shadow-lg flex items-center gap-3 animate-float">
+       <div class="bg-green-100 p-2 rounded-full text-green-700">
+        <i class="w-5 h-5" data-lucide="award">
+        </i>
+       </div>
+       <div>
+        <p class="text-xs text-secondary font-bold uppercase">
+         Experience
+        </p>
+        <p class="font-display font-bold text-primary">
+         PayPal, Oracle &amp; IBM
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header>
+  <!-- About / The Journey Section -->
+  <section class="py-24 bg-white relative" id="about">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-12 gap-12">
+     <!-- Header -->
+     <div class="md:col-span-4">
+      <h2 class="font-display text-4xl font-bold mb-6">
+       Why I Want to Mentor
+      </h2>
+      <div class="h-1 w-20 bg-accent mb-6">
+      </div>
+      <p class="text-secondary leading-relaxed mb-6">
+       Mentorship has been crucial in my career, and I&rsquo;m eager to give back by guiding others. My goal is to help you navigate your tech career with support, knowledge, and practical advice.
+      </p>
+      <div class="p-6 bg-background rounded-2xl border border-gray-100">
+       <i class="text-accent mb-3 w-6 h-6" data-lucide="quote">
+       </i>
+       <p class="text-primary font-medium italic">
+        "If you&rsquo;re passionate about tech and eager to grow, let&rsquo;s connect!"
+       </p>
+      </div>
+     </div>
+     <!-- The Offerings (Timeline Style) -->
+     <div class="md:col-span-8 space-y-8 pl-0 md:pl-12 border-l border-gray-200 relative">
+      <!-- Node 1 -->
+      <div class="relative pl-8 group">
+       <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-white">
+       </div>
+       <h3 class="text-xl font-bold font-display mb-2 group-hover:text-accent transition-colors">
+        Technical Expertise
+       </h3>
+       <p class="text-secondary">
+        Deep dive into Java, JavaScript, Python, Spring Boot, React, AWS, and GCP. I don't just teach syntax; I teach architecture and scalability.
+       </p>
+      </div>
+      <!-- Node 2 -->
+      <div class="relative pl-8 group">
+       <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gray-300 group-hover:bg-accent ring-4 ring-white transition-colors">
+       </div>
+       <h3 class="text-xl font-bold font-display mb-2 group-hover:text-accent transition-colors">
+        Real-World Experience
+       </h3>
+       <p class="text-secondary">
+        Learn from my experience leading projects at PayPal and IBM. Understand how to enhance efficiency and implement innovative solutions in enterprise environments.
+       </p>
+      </div>
+      <!-- Node 3 -->
+      <div class="relative pl-8 group">
+       <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gray-300 group-hover:bg-accent ring-4 ring-white transition-colors">
+       </div>
+       <h3 class="text-xl font-bold font-display mb-2 group-hover:text-accent transition-colors">
+        Career Guidance
+       </h3>
+       <p class="text-secondary">
+        End-to-end support for resume building, interview preparation, and career development strategies to land SDE roles at product-based companies.
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Services / Bento Grid -->
+  <section class="py-24 bg-background px-6" id="services">
+   <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <span class="text-accent font-bold tracking-wider uppercase text-sm">
+      Mentorship Programs
+     </span>
+     <h2 class="font-display text-4xl md:text-5xl font-bold mt-2 mb-4">
+      Choose Your Path
+     </h2>
+     <p class="text-secondary max-w-2xl mx-auto">
+      Whether you need a quick mock interview or a dedicated 6-month career transformation, I have a plan for you.
+     </p>
+    </div>
+    <!-- Bento Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
+     <!-- Card 1: 1 Month Mentorship (Featured) -->
+     <div class="md:col-span-2 row-span-2 bg-primary text-white rounded-3xl p-8 relative overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+      <div class="absolute top-0 right-0 p-32 bg-accent/10 rounded-full blur-3xl transform translate-x-10 -translate-y-10 group-hover:bg-accent/20 transition-colors">
+      </div>
+      <div class="relative z-10 flex flex-col h-full justify-between">
+       <div>
+        <div class="flex justify-between items-start mb-6">
+         <span class="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold border border-white/10">
+          MOST POPULAR
+         </span>
+         <i class="w-8 h-8 text-accent" data-lucide="rocket">
+         </i>
+        </div>
+        <h3 class="font-display text-3xl font-bold mb-4">
+         1 Month Interview Prep
+        </h3>
+        <p class="text-gray-300 mb-6 max-w-md">
+         Intensive 4-week program focusing on DSA, system design fundamentals, and mock interview practice. Weekly high-impact coding problems and behavioral strategies.
+        </p>
+       </div>
+       <div class="flex items-end justify-between border-t border-white/10 pt-6">
+        <div>
+         <p class="text-sm text-gray-400">
+          Investment
+         </p>
+         <p class="text-3xl font-bold font-display">
+          ₹10,000
+         </p>
+        </div>
+        <a class="bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-accent hover:text-white transition-colors" href="https://topmate.io/paramjit_saha10/1461880">
+         Enroll Now
+        </a>
+       </div>
+      </div>
+     </div>
+     <!-- Card 2: Trial Session -->
+     <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+      <div>
+       <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <i class="text-blue-600 w-6 h-6" data-lucide="coffee">
+        </i>
+       </div>
+       <h3 class="font-display text-xl font-bold mb-2">
+        Trial Session
+       </h3>
+       <p class="text-sm text-secondary">
+        A quick connect to discuss your goals and see if we're a fit.
+       </p>
+      </div>
+      <div class="mt-6 flex justify-between items-center">
+       <span class="text-2xl font-bold font-display">
+        ₹99
+       </span>
+       <a class="p-3 rounded-full bg-background hover:bg-primary hover:text-white transition-colors" href="https://topmate.io/paramjit_saha10/1461969">
+        <i class="w-5 h-5" data-lucide="arrow-up-right">
+        </i>
+       </a>
+      </div>
+     </div>
+     <!-- Card 3: Mock Interview -->
+     <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+      <div>
+       <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <i class="text-purple-600 w-6 h-6" data-lucide="mic">
+        </i>
+       </div>
+       <h3 class="font-display text-xl font-bold mb-2">
+        Mock Interview
+       </h3>
+       <p class="text-sm text-secondary">
+        Real-world interview simulation with detailed feedback on DSA &amp; System Design.
+       </p>
+      </div>
+      <div class="mt-6 flex justify-between items-center">
+       <span class="text-2xl font-bold font-display">
+        ₹1,999
+       </span>
+       <a class="p-3 rounded-full bg-background hover:bg-primary hover:text-white transition-colors" href="https://topmate.io/paramjit_saha10/395831">
+        <i class="w-5 h-5" data-lucide="arrow-up-right">
+        </i>
+       </a>
+      </div>
+     </div>
+     <!-- Card 4: Long Term Mentorships (Consolidated) -->
+     <div class="md:col-span-3 bg-gradient-to-r from-primary to-gray-800 rounded-3xl p-8 text-white relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="relative z-10">
+       <h3 class="font-display text-2xl font-bold mb-2">
+        Long-Term Mentorships
+       </h3>
+       <p class="text-gray-300 text-sm max-w-lg">
+        Comprehensive guidance for 2, 3, or 6 months. Ideal for career switchers or full-stack mastery.
+       </p>
+      </div>
+      <div class="flex flex-wrap gap-3 z-10 relative">
+       <a class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white hover:text-primary transition-all border border-white/20 text-sm font-medium text-center" href="https://topmate.io/paramjit_saha10/1461906">
+        2 Months
+        <br/>
+        <span class="font-bold text-lg">
+         ₹18k
+        </span>
+       </a>
+       <a class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white hover:text-primary transition-all border border-white/20 text-sm font-medium text-center" href="https://topmate.io/paramjit_saha10/1461907">
+        3 Months
+        <br/>
+        <span class="font-bold text-lg">
+         ₹25k
+        </span>
+       </a>
+       <a class="px-5 py-3 rounded-xl bg-accent text-white hover:shadow-lg hover:scale-105 transition-all text-sm font-medium text-center shadow-accent/50 shadow-lg border-0" href="https://topmate.io/paramjit_saha10/1461908">
+        6 Months
+        <br/>
+        <span class="font-bold text-lg">
+         ₹40k
+        </span>
+       </a>
+      </div>
+      <!-- Decorative pattern -->
+      <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20">
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Social Proof / Reviews -->
+  <section class="py-24 bg-white relative overflow-hidden" id="testimonials">
+   <div class="max-w-6xl mx-auto px-6 mb-12 flex flex-col md:flex-row items-end justify-between gap-6">
+    <div>
+     <h2 class="font-display text-4xl font-bold mb-4">
+      What Mentees Say
+     </h2>
+     <p class="text-secondary">
+      Impact from real sessions.
+     </p>
+    </div>
+    <div class="flex gap-2">
+     <button aria-label="Previous" class="p-3 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors">
+      <i class="w-5 h-5" data-lucide="arrow-left">
+      </i>
+     </button>
+     <button aria-label="Next" class="p-3 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors">
+      <i class="w-5 h-5" data-lucide="arrow-right">
+      </i>
+     </button>
+    </div>
+   </div>
+   <!-- Horizontal Scrolling Strip -->
+   <div class="flex gap-6 overflow-x-auto no-scrollbar px-6 pb-12 snap-x">
+    <!-- Review 1 -->
+    <div class="min-w-[300px] md:min-w-[400px] bg-background p-8 rounded-2xl snap-center hover:bg-blue-50 transition-colors duration-300">
+     <div class="flex items-center gap-1 mb-4 text-yellow-500">
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+     </div>
+     <p class="text-primary font-medium mb-6 italic">
+      "The mentor provided a structured approach to evaluating career paths, addressing all my doubts. His insights on every question were spot-on."
+     </p>
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-accent to-blue-600 flex items-center justify-center text-white font-bold text-sm">
+       S
+      </div>
+      <div>
+       <p class="font-bold text-sm">
+        Samruddhi
+       </p>
+       <p class="text-xs text-secondary">
+        Mentee
+       </p>
+      </div>
+     </div>
+    </div>
+    <!-- Review 2 -->
+    <div class="min-w-[300px] md:min-w-[400px] bg-background p-8 rounded-2xl snap-center hover:bg-blue-50 transition-colors duration-300">
+     <div class="flex items-center gap-1 mb-4 text-yellow-500">
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+     </div>
+     <p class="text-primary font-medium mb-6 italic">
+      "The mentor patiently listened to my doubts and provided clear, thorough explanations that boosted my confidence."
+     </p>
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+       AL
+      </div>
+      <div>
+       <p class="font-bold text-sm">
+        Avhik Laha
+       </p>
+       <p class="text-xs text-secondary">
+        Mentee
+       </p>
+      </div>
+     </div>
+    </div>
+    <!-- Review 3 -->
+    <div class="min-w-[300px] md:min-w-[400px] bg-background p-8 rounded-2xl snap-center hover:bg-blue-50 transition-colors duration-300">
+     <div class="flex items-center gap-1 mb-4 text-yellow-500">
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+     </div>
+     <p class="text-primary font-medium mb-6 italic">
+      "I really appreciated the mentor's ability to clearly explain complex concepts in an easy to understand manner."
+     </p>
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-green-500 to-emerald-600 flex items-center justify-center text-white font-bold text-sm">
+       KS
+      </div>
+      <div>
+       <p class="font-bold text-sm">
+        Koushik Sarkar
+       </p>
+       <p class="text-xs text-secondary">
+        Mentee
+       </p>
+      </div>
+     </div>
+    </div>
+    <!-- Review 4 -->
+    <div class="min-w-[300px] md:min-w-[400px] bg-background p-8 rounded-2xl snap-center hover:bg-blue-50 transition-colors duration-300">
+     <div class="flex items-center gap-1 mb-4 text-yellow-500">
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+      <i class="w-4 h-4 fill-current" data-lucide="star">
+      </i>
+     </div>
+     <p class="text-primary font-medium mb-6 italic">
+      "The mentor is very friendly and provides well-structured plans for my coding and placement journey. I am truly grateful."
+     </p>
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-sm">
+       KP
+      </div>
+      <div>
+       <p class="font-bold text-sm">
+        Kuntal Pramanik
+       </p>
+       <p class="text-xs text-secondary">
+        Mentee
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Final CTA -->
+  <section class="py-20 px-6">
+   <div class="max-w-4xl mx-auto text-center">
+    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
+     Ready to elevate your tech career?
+    </h2>
+    <p class="text-secondary text-lg mb-8">
+     Let's work together to unlock your full potential in software engineering.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+     <a class="px-8 py-4 bg-white border border-gray-200 text-primary rounded-full font-semibold hover:border-accent transition-colors" href="/cdn-cgi/l/email-protection#0a796b626b7a6b786b6760637e383a3b3f4a6d676b636624696567">
+      Email Me
+     </a>
+     <a class="px-8 py-4 bg-primary text-white rounded-full font-semibold hover:bg-accent transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-300" href="#services">
+      Get Started
+     </a>
+    </div>
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-12 border-t border-gray-800">
+   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+    <div>
+     <p class="font-display font-bold text-2xl mb-2">
+      Paramjit Saha
+     </p>
+     <p class="text-gray-400 text-sm">
+      SDE 3 @PayPal | Mentoring the next generation of engineers.
+     </p>
+    </div>
+    <div class="flex md:justify-end gap-6">
+     <a aria-label="LinkedIn" class="text-gray-400 hover:text-white transition-colors" href="https://linkedin.com/in/paramjitsaha">
+      <i class="w-6 h-6" data-lucide="linkedin">
+      </i>
+     </a>
+     <a aria-label="Email" class="text-gray-400 hover:text-white transition-colors" href="/cdn-cgi/l/email-protection#2053414841504152414d4a49541210111560474d41494c0e434f4d">
+      <i class="w-6 h-6" data-lucide="mail">
+      </i>
+     </a>
+    </div>
+   </div>
+   <div class="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+    <p>
+     &copy; 2024 Paramjit Saha. All rights reserved.
+    </p>
+    <a class="inline-block mt-2 hover:text-accent transition-colors" href="https://topmate.io/paramjit_saha10">
+     Book me on Topmate
+    </a>
+   </div>
+  </footer>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+   // Initialize Icons
+        lucide.createIcons();
+
+        // Intersection Observer for Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Target elements for animation
+        document.querySelectorAll('#services .group, #testimonials .snap-center').forEach((el) => {
+            el.classList.add('opacity-0');
+            observer.observe(el);
+        });
+  </script>
+ 
+<!-- Mixpanel Library -->
+<script type="text/javascript">
+(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+</script>
+
+<script>
+(function() {
+  'use strict';
+
+  // Configuration
+  const REMIX_CONFIG = {
+    slug: 'boE8mT5XSK',
+    apiBaseUrl: 'https://d2ntssqgwvof3c.cloudfront.net/',
+    editorUrl: 'https://pages.topmate.io',
+    mixpanelToken: '41aae50bdc08049e39f8e2a6043ba379',
+    isProd: 'true'
+  };
+
+  // Initialize Mixpanel
+  if (typeof window !== 'undefined' && window.mixpanel && REMIX_CONFIG.mixpanelToken) {
+    try {
+      window.mixpanel.init(REMIX_CONFIG.mixpanelToken, {
+        debug: REMIX_CONFIG.isProd !== 'true',
+        persistence: 'localStorage'
+      });
+    } catch (error) {
+      console.error('Mixpanel init failed:', error);
+    }
+  }
+
+  // Utility function for cookie access (defined early for use in Analytics)
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  }
+
+  // Create simplified Analytics object for HTML direct context
+  window.Analytics = {
+    track: function(eventName, properties = {}) {
+      if (typeof window !== 'undefined' && window.mixpanel) {
+        try {
+          const accessToken = getCookie('access_token');
+          const loginState = accessToken ? 'Logged In' : 'Logged Out';
+          
+          const defaultProps = {
+            State: loginState,
+            timestamp: new Date().toISOString(),
+            page_url: window.location.href,
+            user_agent: navigator.userAgent || 'Unknown',
+            source: 'html_direct_remix'
+          };
+          
+          const mergedProps = { ...defaultProps, ...properties };
+          window.mixpanel.track(eventName, mergedProps);
+        } catch (error) {
+          console.error('Analytics track failed:', error);
+        }
+      }
+    },
+    
+    page: function(pageName, properties = {}) {
+      if (typeof window !== 'undefined' && window.mixpanel) {
+        try {
+          const defaultProps = {
+            page_name: pageName,
+            page_url: window.location.href,
+            timestamp: new Date().toISOString()
+          };
+          
+          const mergedProps = { ...defaultProps, ...properties };
+          window.mixpanel.track('Page Viewed', mergedProps);
+        } catch (error) {
+          console.error('Analytics page failed:', error);
+        }
+      }
+    },
+    
+    alias: function(id) {
+      if (typeof window !== 'undefined' && window.mixpanel) {
+        try {
+          window.mixpanel.alias(id);
+        } catch (error) {
+          console.error('Analytics alias failed:', error);
+        }
+      }
+    },
+    
+    reset: function() {
+      if (typeof window !== 'undefined' && window.mixpanel) {
+        try {
+          window.mixpanel.reset();
+        } catch (error) {
+          console.error('Analytics reset failed:', error);
+        }
+      }
+    }
+  };
+
+  // Utility functions
+
+  function isLoggedIn() {
+    return !!getCookie('access_token');
+  }
+
+  function showToast(message, type = 'info') {
+    // Remove existing toasts
+    const existingToasts = document.querySelectorAll('.topmate-toast');
+    existingToasts.forEach(toast => toast.remove());
+
+    const toast = document.createElement('div');
+    toast.className = `topmate-toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // Show toast
+    setTimeout(() => toast.classList.add('show'), 100);
+
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 5000);
+  }
+
+  function trackEvent(eventName, properties = {}) {
+    const finalProperties = { ...properties };
+
+    // Track with Topmate Analytics if available (primary method)
+    if (typeof window !== 'undefined' && window.Analytics && window.Analytics.track) {
+      try {
+        window.Analytics.track(eventName, finalProperties);
+      } catch (error) {
+        console.error('Remix tracking failed:', error);
+      }
+    }
+
+    // Fallback to Google Analytics if available
+    if (typeof gtag !== 'undefined') {
+      try {
+        gtag('event', eventName, {
+          custom_parameter_1: 'topmate_remix',
+          ...finalProperties
+        });
+      } catch (error) {
+        console.error('GA tracking failed:', error);
+      }
+    }
+  }
+
+  async function makeRemixRequest(slug) {
+    // Use configured API base URL
+    const apiBaseUrl = REMIX_CONFIG.apiBaseUrl;
+    
+    if (!apiBaseUrl) {
+      throw new Error('API base URL not configured');
+    }
+
+    const token = getCookie('access_token');
+    if (!token) {
+      throw new Error('No authentication token found');
+    }
+
+    const requestUrl = `${apiBaseUrl}remix-site/${slug}/`;
+
+    try {
+      const response = await fetch(requestUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`
+        },
+        credentials: 'include' // Include cookies in the request
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || errorData.error || `Request failed with status ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        throw new Error('Network error - please check your connection and try again');
+      }
+      throw error;
+    }
+  }
+
+  function updateButtonState(button, isLoading) {
+    const actionText = button.querySelector('.topmate-remix-action');
+    if (isLoading) {
+      button.classList.add('loading');
+      button.disabled = true;
+      if (actionText) actionText.textContent = 'Remixing...';
+    } else {
+      button.classList.remove('loading');
+      button.disabled = false;
+      if (actionText) actionText.textContent = 'Remix';
+    }
+  }
+
+  async function handleRemixClick(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+
+    // Parse URL to extract username and slug from pattern /username/page/slug
+    let username = null;
+    let slug = REMIX_CONFIG.slug;
+    
+    if (typeof window !== 'undefined' && window.location && window.location.pathname) {
+      const pathMatch = window.location.pathname.match(new RegExp('^/([^/]+)/page/([^/]+)'));
+      if (pathMatch) {
+        username = pathMatch[1]; // Extract username from URL
+        slug = pathMatch[2]; // Extract slug from URL
+      }
+    }
+
+    // Track click - match original RemixCTA events exactly
+    trackEvent('remix_cta_clicked', {
+      username: username,
+      slug: slug,
+      is_logged_in: isLoggedIn(),
+      source: 'floating_cta'
+    });
+
+    // Check authentication (no redirect tracking to match original)
+    if (!isLoggedIn()) {
+      if (typeof window !== 'undefined' && window.location) {
+        const currentUrl = window.location.href;
+        const encodedRedirect = encodeURIComponent(currentUrl);
+        window.location.href = `/signup?redirect_to=${encodedRedirect}`;
+      }
+      return;
+    }
+
+    // Execute remix
+    try {
+      updateButtonState(button, true);
+      showToast('Creating your remix...', 'info');
+
+      const response = await makeRemixRequest(slug);
+      
+      // Handle different response structures (direct from backend vs Next.js API wrapper)
+      const threadId = response?.data?.thread_id || response?.thread_id;
+      
+      if (!threadId) {
+        throw new Error('No thread_id received in response');
+      }
+      
+      showToast('Site remixed successfully! Redirecting to editor...', 'success');
+      
+      // Track success - match original RemixCTA events exactly
+      trackEvent('remix_success', {
+        username: username,
+        slug: slug,
+        thread_id: threadId
+      });
+
+      // Redirect to editor
+      setTimeout(() => {
+        if (typeof window !== 'undefined' && window.open) {
+          window.open(
+            `${REMIX_CONFIG.editorUrl}?thread_id=${threadId}`,
+            '_blank'
+          );
+        } else {
+          // Fallback: try to navigate directly
+          const editorUrl = `${REMIX_CONFIG.editorUrl}?thread_id=${threadId}`;
+          if (typeof window !== 'undefined' && window.location) {
+            window.location.href = editorUrl;
+          }
+        }
+      }, 1000);
+
+    } catch (error) {
+      console.error('Remix error:', error);
+      showToast('Failed to remix site. Please try again.', 'error');
+      
+      // Track error - match original RemixCTA events exactly
+      trackEvent('remix_error', {
+        username: username,
+        slug: slug,
+        error: error.message || 'Unknown error'
+      });
+    } finally {
+      updateButtonState(button, false);
+    }
+  }
+
+  // Create and inject the remix CTA
+  function createRemixCTA() {
+    const ctaHtml = `
+      <div class="topmate-remix-cta">
+        <button class="topmate-remix-btn" id="topmate-remix-btn">
+          <div class="topmate-remix-spinner"></div>
+          <svg class="topmate-remix-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732L14.146 12.8l-1.179 4.456a1 1 0 01-1.856.048L9.5 13.134 6.146 11.2a1 1 0 010-1.732L9.5 6.866l1.611-4.170A1 1 0 0112 2z" clip-rule="evenodd" />
+          </svg>
+          <div class="topmate-remix-text">
+            <span class="topmate-remix-action">Remix</span>
+            <span class="topmate-remix-brand">with topmate</span>
+          </div>
+        </button>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', ctaHtml);
+
+    // Attach event listener
+    const button = document.getElementById('topmate-remix-btn');
+    if (button) {
+      button.addEventListener('click', handleRemixClick);
+    }
+  }
+
+  // Initialize when DOM and window are ready
+  function initialize() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    
+    createRemixCTA();
+    
+    // Parse URL to extract username and slug from pattern /username/page/slug
+    let username = null;
+    let slug = REMIX_CONFIG.slug;
+    
+    if (typeof window !== 'undefined' && window.location && window.location.pathname) {
+      const pathMatch = window.location.pathname.match(new RegExp('^/([^/]+)/page/([^/]+)'));
+      if (pathMatch) {
+        username = pathMatch[1]; // Extract username from URL
+        slug = pathMatch[2]; // Extract slug from URL
+      }
+    }
+    
+    // Track custom Sites Page Viewed event
+    if (typeof window !== 'undefined' && window.Analytics && window.Analytics.track) {
+      try {
+        trackEvent('Sites Page Viewed', {
+          username: username,
+          slug: slug,
+          page_url: window.location?.href || '',
+          referrer: document.referrer || null,
+          user_agent: navigator.userAgent || 'Unknown'
+        });
+      } catch (error) {
+        console.error('Sites page tracking failed:', error);
+      }
+    }
+    
+    // Track page view to match original /page/<slug> route exactly
+    if (typeof window !== 'undefined' && window.Analytics && window.Analytics.page) {
+      try {
+        window.Analytics.page('Topmate Sites Page Viewed', {
+          page: 'topmate_sites',
+          username: username,
+          slug: slug,
+          expert_id: null,
+          expert_name: null,  
+          thread_id: null,
+          service_id: null
+        });
+      } catch (error) {
+        console.error('Page tracking failed:', error);
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initialize);
+    } else {
+      // Use setTimeout to ensure window is fully available
+      setTimeout(initialize, 0);
+    }
+  }
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9b0428be6f037643","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.9.1","token":"e0537fb10acb4578a95059d6e97e190a"}' crossorigin="anonymous"></script>
+</body>
+</html>
