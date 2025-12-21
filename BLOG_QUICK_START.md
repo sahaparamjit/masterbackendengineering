@@ -137,9 +137,9 @@ More content, code examples, etc.
 
 ### Step 2️⃣: Register File Path (Update HTML Only)
 
-Add file path to `markdownFiles` array in **both** HTML files:
+Add file path to `markdownFiles` array in **both** HTML files or, preferably, add the path to `blogs/index.json`:
 
-**blog.html** (line ~150):
+**blog.html** (line ~150) or add to `blogs/index.json`:
 ```javascript
 const markdownFiles = [
   'blogs/designing-scalable-systems.md',

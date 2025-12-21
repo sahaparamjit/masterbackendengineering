@@ -131,13 +131,14 @@
   <!-- Blog Posts Grid -->
   <section class="py-24 px-6">
     <div class="max-w-6xl mx-auto">
-      <div id="blog-posts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Posts will be loaded here by JavaScript -->
-        <div class="col-span-full text-center py-12">
-          <p class="text-secondary">Loading articles...</p>
+        <div id="blog-posts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Posts will be loaded here by JavaScript -->
+          <div class="col-span-full text-center py-12">
+            <p class="text-secondary">Loading articles...</p>
+          </div>
         </div>
+        <div id="pagination" class="mt-8 flex justify-center items-center gap-4"></div>
       </div>
-    </div>
   </section>
 
   <!-- Footer -->
@@ -161,12 +162,26 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <script>
-    // List of markdown files to load
+    // List of markdown files to load (fallback).
+    // If `blogs/index.json` exists, it will be used instead for discovery.
     const markdownFiles = [
       'blogs/designing-scalable-systems.md',
       'blogs/java-spring-boot-performance.md',
       'blogs/senior-engineer-skills.md'
     ];
+
+    // Try to load a pre-generated index file at build time.
+    async function discoverMarkdownFiles() {
+      try {
+        const resp = await fetch('blogs/index.json');
+        if (!resp.ok) return markdownFiles;
+        const list = await resp.json();
+        if (Array.isArray(list) && list.length) return list;
+      } catch (e) {
+        // ignore and fall back
+      }
+      return markdownFiles;
+    }
 
     // Parse YAML frontmatter from markdown
     function parseFrontmatter(markdown) {
@@ -219,40 +234,41 @@
     // Load markdown files and extract metadata
     async function loadBlogPosts() {
       const blogPosts = [];
-      
-      for (const file of markdownFiles) {
+      const files = await discoverMarkdownFiles();
+
+      for (const file of files) {
         try {
           const response = await fetch(file);
           if (!response.ok) continue;
-          
+
           const markdown = await response.text();
           const metadata = parseFrontmatter(markdown);
-          
+
           if (metadata) {
+            // Attach the source file so we can link or debug if needed
+            metadata.__source = file;
             blogPosts.push(metadata);
           }
         } catch (error) {
           console.error(`Error loading ${file}:`, error);
         }
       }
-      
+
       // Sort by date (newest first)
       blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-      
+
       return blogPosts;
     }
 
-    // Load and display blog posts
-    async function initializeBlog() {
-      const blogPosts = await loadBlogPosts();
-      const container = document.getElementById('blog-posts');
-      
-      if (blogPosts.length === 0) {
-        container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-secondary">No articles yet. Check back soon!</p></div>';
-        return;
-      }
+    // Client-side pagination: 6 posts per page
+    const POSTS_PER_PAGE = 6;
 
-      container.innerHTML = blogPosts.map((post) => `
+    function renderPage(posts, page = 1) {
+      const start = (page - 1) * POSTS_PER_PAGE;
+      const pagePosts = posts.slice(start, start + POSTS_PER_PAGE);
+      const container = document.getElementById('blog-posts');
+
+      container.innerHTML = pagePosts.map((post) => `
         <article class="blog-card bg-white rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col">
           <div class="p-6 flex-1 flex flex-col">
             <div class="mb-4">
@@ -276,10 +292,58 @@
         </article>
       `).join('');
 
-      // Reinitialize Lucide icons
       if (typeof lucide !== 'undefined') {
         lucide.createIcons();
       }
+    }
+
+    function renderPagination(posts, currentPage = 1) {
+      const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+      const pagination = document.getElementById('pagination');
+      if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+      }
+
+      const prevDisabled = currentPage <= 1 ? 'opacity-50 pointer-events-none' : '';
+      const nextDisabled = currentPage >= totalPages ? 'opacity-50 pointer-events-none' : '';
+
+      pagination.innerHTML = `
+        <button id="prevPage" class="px-4 py-2 bg-white border rounded ${prevDisabled}">Previous</button>
+        <span class="text-sm text-secondary">Page ${currentPage} of ${totalPages}</span>
+        <button id="nextPage" class="px-4 py-2 bg-white border rounded ${nextDisabled}">Next</button>
+      `;
+
+      document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage <= 1) return;
+        const newPage = currentPage - 1;
+        renderPage(posts, newPage);
+        renderPagination(posts, newPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      document.getElementById('nextPage').addEventListener('click', () => {
+        if (currentPage >= totalPages) return;
+        const newPage = currentPage + 1;
+        renderPage(posts, newPage);
+        renderPagination(posts, newPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Load and display blog posts with pagination
+    async function initializeBlog() {
+      const blogPosts = await loadBlogPosts();
+      const container = document.getElementById('blog-posts');
+
+      if (blogPosts.length === 0) {
+        container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-secondary">No articles yet. Check back soon!</p></div>';
+        return;
+      }
+
+      // Render first page
+      renderPage(blogPosts, 1);
+      renderPagination(blogPosts, 1);
     }
 
     function formatDate(dateString) {

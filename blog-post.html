@@ -261,12 +261,24 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <script>
-    // List of markdown files (for discovery)
+    // List of markdown files (fallback). If `blogs/index.json` exists it will be used.
     const markdownFiles = [
       'blogs/designing-scalable-systems.md',
       'blogs/java-spring-boot-performance.md',
       'blogs/senior-engineer-skills.md'
     ];
+
+    async function discoverMarkdownFiles() {
+      try {
+        const resp = await fetch('blogs/index.json');
+        if (!resp.ok) return markdownFiles;
+        const list = await resp.json();
+        if (Array.isArray(list) && list.length) return list;
+      } catch (e) {
+        // ignore and fall back
+      }
+      return markdownFiles;
+    }
 
     // Parse YAML frontmatter from markdown
     function parseFrontmatter(markdown) {
@@ -325,14 +337,15 @@
 
     // Find markdown file by post ID
     async function findMarkdownFile(postId) {
-      for (const file of markdownFiles) {
+      const files = await discoverMarkdownFiles();
+      for (const file of files) {
         try {
           const response = await fetch(file);
           if (!response.ok) continue;
-          
+
           const markdown = await response.text();
           const { metadata } = parseFrontmatter(markdown);
-          
+
           if (metadata && metadata.id === postId) {
             return file;
           }

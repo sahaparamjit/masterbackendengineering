@@ -70,9 +70,9 @@ More content with examples, code blocks, etc.
 
 ### Step 2: Register the File (Update HTML)
 
-Add the markdown file path to the `markdownFiles` array in both HTML pages:
+Preferred: add the markdown file path to `blogs/index.json` (recommended). If you don't want to use `index.json`, add the path to both HTML pages' `markdownFiles` arrays.
 
-**In blog.html** (around line 150):
+**In blog.html** (around line 150) or update `blogs/index.json`:
 ```javascript
 const markdownFiles = [
   'blogs/designing-scalable-systems.md',
