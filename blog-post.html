@@ -280,9 +280,9 @@
       return markdownFiles;
     }
 
-    // Parse YAML frontmatter from markdown
+    // Parse YAML frontmatter from markdown (permissive, CRLF-safe)
     function parseFrontmatter(markdown) {
-      const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+      const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
       const match = markdown.match(frontmatterRegex);
       
       if (!match) return { metadata: null, content: markdown };
@@ -327,6 +327,36 @@
       }
       
       return { metadata, content };
+    }
+
+    function parseFrontmatterFallback(markdown) {
+      if (!markdown.startsWith('---')) return { metadata: null, content: markdown };
+      const parts = markdown.split(/---\r?\n/);
+      if (parts.length < 3) return { metadata: null, content: markdown };
+      const front = parts[1];
+      const body = parts.slice(2).join('\n---\n');
+      const lines = front.split(/\r?\n/).filter(Boolean);
+      const fm = {};
+      let currentArray = null;
+      for (const line of lines) {
+        if (line.trim().startsWith('- ')) {
+          if (currentArray) currentArray.push(line.trim().substring(2));
+          continue;
+        }
+        const idx = line.indexOf(':');
+        if (idx > 0) {
+          const key = line.substring(0, idx).trim();
+          const val = line.substring(idx + 1).trim();
+          if (val.startsWith('[')) {
+            currentArray = [];
+            fm[key] = currentArray;
+          } else {
+            currentArray = null;
+            fm[key] = val;
+          }
+        }
+      }
+      return { metadata: fm, content: body };
     }
 
     // Get post ID from URL
@@ -387,7 +417,11 @@
         }
         
         const markdown = await response.text();
-        const { metadata, content } = parseFrontmatter(markdown);
+        let parsed = parseFrontmatter(markdown);
+        if (!parsed.metadata) {
+          parsed = parseFrontmatterFallback(markdown);
+        }
+        const { metadata, content } = parsed;
         
         if (!metadata) {
           throw new Error('No metadata found in post');

@@ -183,9 +183,9 @@
       return markdownFiles;
     }
 
-    // Parse YAML frontmatter from markdown
+    // Parse YAML frontmatter from markdown (permissive, CRLF-safe)
     function parseFrontmatter(markdown) {
-      const frontmatterRegex = /^---\n([\s\S]*?)\n---\n/;
+      const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
       const match = markdown.match(frontmatterRegex);
       
       if (!match) return null;
@@ -231,26 +231,67 @@
       return frontmatter;
     }
 
+    // Fallback parser: split on '---' if strict regex fails
+    function parseFrontmatterFallback(markdown) {
+      if (!markdown.startsWith('---')) return null;
+      const parts = markdown.split(/---\r?\n/);
+      if (parts.length < 3) return null;
+      const front = parts[1];
+      const lines = front.split(/\r?\n/).filter(Boolean);
+      const fm = {};
+      let currentArray = null;
+      for (const line of lines) {
+        if (line.trim().startsWith('- ')) {
+          if (currentArray) currentArray.push(line.trim().substring(2));
+          continue;
+        }
+        const idx = line.indexOf(':');
+        if (idx > 0) {
+          const key = line.substring(0, idx).trim();
+          const val = line.substring(idx + 1).trim();
+          if (val.startsWith('[')) {
+            currentArray = [];
+            fm[key] = currentArray;
+          } else {
+            currentArray = null;
+            fm[key] = val;
+          }
+        }
+      }
+      return fm;
+    }
+
     // Load markdown files and extract metadata
     async function loadBlogPosts() {
       const blogPosts = [];
       const files = await discoverMarkdownFiles();
 
       for (const file of files) {
-        try {
-          const response = await fetch(file);
-          if (!response.ok) continue;
+        const variants = [file, './' + file, '/' + file];
+        let loaded = false;
+        for (const path of variants) {
+          try {
+            const response = await fetch(path);
+            if (!response.ok) continue;
 
-          const markdown = await response.text();
-          const metadata = parseFrontmatter(markdown);
+            const markdown = await response.text();
+            let metadata = parseFrontmatter(markdown);
+            if (!metadata) {
+              metadata = parseFrontmatterFallback(markdown);
+            }
 
-          if (metadata) {
-            // Attach the source file so we can link or debug if needed
-            metadata.__source = file;
-            blogPosts.push(metadata);
+            if (metadata) {
+              metadata.__source = path;
+              blogPosts.push(metadata);
+              loaded = true;
+              break; // stop trying variants for this file
+            }
+          } catch (error) {
+            console.warn(`Error fetching ${path}:`, error);
           }
-        } catch (error) {
-          console.error(`Error loading ${file}:`, error);
+        }
+        if (!loaded) {
+          console.warn(`Skipped ${file}: could not fetch or parse frontmatter`);
         }
       }
 
