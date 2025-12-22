@@ -445,8 +445,11 @@
     // Social Sharing Functions
     function shareToLinkedIn() {
       const url = encodeURIComponent(window.location.href);
-      const title = encodeURIComponent(document.title);
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+      // Try to get clean title from h1, fallback to document title
+      const titleElement = document.getElementById('title');
+      const cleanTitle = titleElement ? titleElement.textContent : document.title;
+      const text = encodeURIComponent(`Check out this article: "${cleanTitle}"\n\n`);
+      window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${text}${url}`, '_blank');
     }
 
     function shareToTwitter() {
