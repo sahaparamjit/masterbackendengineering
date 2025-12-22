@@ -151,6 +151,16 @@
   <!-- Blog Posts Grid -->
   <section class="py-24 px-6 dark:bg-gray-900">
     <div class="max-w-6xl mx-auto">
+        <!-- Search Bar -->
+        <div class="mb-12 max-w-xl mx-auto">
+            <div class="relative group">
+                <i class="absolute left-4 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-accent transition-colors w-5 h-5" data-lucide="search"></i>
+                <input type="text" id="blog-search" placeholder="Search articles by title, tags, or content..." 
+                    class="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500"
+                >
+            </div>
+        </div>
+
         <div id="blog-posts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Posts will be loaded here by JavaScript -->
           <div class="col-span-full text-center py-12">
@@ -180,6 +190,8 @@
 
   <!-- Marked.js for Markdown Parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Fuse.js for Search -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
 
   <script>
     // List of markdown files to load (fallback).
@@ -380,19 +392,48 @@
       });
     }
 
-    // Load and display blog posts with pagination
+    // Load and display blog posts with pagination and search
     async function initializeBlog() {
       const blogPosts = await loadBlogPosts();
       const container = document.getElementById('blog-posts');
+      const searchInput = document.getElementById('blog-search');
 
       if (blogPosts.length === 0) {
         container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-secondary">No articles yet. Check back soon!</p></div>';
         return;
       }
 
-      // Render first page
+      // Initialize Fuse.js for fuzzy search
+      const fuse = new Fuse(blogPosts, {
+        keys: ['title', 'tags', 'excerpt'],
+        threshold: 0.3,
+        distance: 100
+      });
+
+      // Initial render
       renderPage(blogPosts, 1);
       renderPagination(blogPosts, 1);
+
+      // Search event listener
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        
+        if (query.length > 0) {
+          const results = fuse.search(query).map(r => r.item);
+          renderPage(results, 1);
+          // Hide pagination during search unless we want to paginate search results
+          // For simplicity, we'll show all matches if search is active
+          document.getElementById('pagination').innerHTML = '';
+          
+          if (results.length === 0) {
+            container.innerHTML = `<div class="col-span-full text-center py-12"><p class="text-secondary">No articles found matching "${query}"</p></div>`;
+          }
+        } else {
+          // Reset to default paginated view
+          renderPage(blogPosts, 1);
+          renderPagination(blogPosts, 1);
+        }
+      });
     }
 
     function formatDate(dateString) {
