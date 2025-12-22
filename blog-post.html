@@ -280,6 +280,14 @@
       <!-- Blog Content (Rendered from Markdown) -->
       <div id="content" class="blog-content mt-12"></div>
 
+      <!-- Related Articles -->
+      <div id="related-articles-section" class="hidden mt-16 border-t border-gray-200 pt-12 dark:border-gray-800">
+        <h3 class="font-display text-2xl font-bold mb-8 dark:text-white">Related Articles</h3>
+        <div id="related-articles-grid" class="grid gap-6 md:grid-cols-2">
+          <!-- Related posts injected here -->
+        </div>
+      </div>
+
       <!-- Back to Blog -->
       <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
         <a href="blog.html" class="inline-flex items-center gap-2 text-accent font-semibold hover:text-accent/80 transition-colors">
@@ -421,6 +429,78 @@
       return new Date(dateString).toLocaleDateString('en-US', options);
     }
 
+    // Load related posts based on tags
+    async function loadRelatedPosts(currentId, currentTags) {
+      if (!currentTags || currentTags.length === 0) return;
+
+      const container = document.getElementById('related-articles-section');
+      const grid = document.getElementById('related-articles-grid');
+      const files = await discoverMarkdownFiles();
+      
+      const relatedPosts = [];
+
+      for (const file of files) {
+        let path = file;
+        if (!file.startsWith('http') && !file.startsWith('/')) {
+            path = './' + file;
+        }
+
+        try {
+          const response = await fetch(path);
+          if (!response.ok) continue;
+          
+          const markdown = await response.text();
+          const { metadata } = parseFrontmatter(markdown);
+          
+          if (!metadata) continue;
+
+          // Determine ID (fallback to filename)
+          const postId = metadata.id || file.split('/').pop().replace('.md', '');
+          
+          // Skip current post
+          if (postId === currentId) continue;
+
+          // Calculate intersection
+          const otherTags = metadata.tags || [];
+          const intersection = currentTags.filter(t => otherTags.includes(t));
+          
+          if (intersection.length > 0) {
+            relatedPosts.push({
+              ...metadata,
+              id: postId,
+              score: intersection.length
+            });
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      // Sort by score desc, then date desc
+      relatedPosts.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      // Take top 2
+      const topPosts = relatedPosts.slice(0, 2);
+
+      if (topPosts.length > 0) {
+        grid.innerHTML = topPosts.map(post => `
+          <a href="blog-post.html?id=${post.id}" class="group block p-6 bg-background rounded-2xl border border-gray-100 hover:border-accent/50 transition-all dark:bg-gray-800 dark:border-gray-700">
+            <h4 class="font-display text-lg font-bold mb-2 group-hover:text-accent transition-colors dark:text-white">${post.title}</h4>
+            <p class="text-sm text-secondary mb-4 line-clamp-2 dark:text-gray-400">${post.excerpt || 'Read this article...'}</p>
+            <div class="flex items-center gap-2 text-xs font-medium text-accent">
+              Read Article <i class="w-3 h-3 group-hover:translate-x-1 transition-transform" data-lucide="arrow-right"></i>
+            </div>
+          </a>
+        `).join('');
+        
+        container.classList.remove('hidden');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+    }
+
     // Load and render blog post
     async function loadBlogPost() {
       const postId = getPostId();
@@ -470,6 +550,9 @@
         // Parse and render markdown
         const html = marked.parse(content);
         document.getElementById('content').innerHTML = html;
+
+        // Load related articles
+        loadRelatedPosts(postId, metadata.tags);
 
         // Reinitialize Lucide icons
         if (typeof lucide !== 'undefined') {
