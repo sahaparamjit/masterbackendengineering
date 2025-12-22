@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Blog | Master Backend Engineering</title>
+  <meta content="Articles on backend engineering, system design, and career growth from Paramjit Saha." name="description"/>
+  <!-- Fonts -->
+  <style type="text/css">@font-face {font-family:Space Grotesk;font-style:normal;font-weight:300;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:300;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:400;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:700;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+  <!-- Icons & Tailwind -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'display': ['"Space Grotesk"', 'sans-serif'],
+            'body': ['"Manrope"', 'sans-serif'],
+          },
+          colors: {
+            'primary': '#111827',
+            'secondary': '#374151',
+            'accent': '#06b6d4',
+            'surface': '#ffffff',
+            'background': '#f3f4f6',
+            'nature': '#3f6212',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(40px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .noise-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.03;
+      background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #111827 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .blog-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .blog-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(6, 182, 212, 0.1);
+      color: #06b6d4;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body class="font-body bg-background text-primary antialiased selection:bg-accent selection:text-white">
+  <div class="noise-bg"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-40 top-0 transition-all duration-300 p-4 sm:p-6">
+    <div class="max-w-6xl mx-auto glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-sm">
+      <a class="font-display font-bold text-lg tracking-tight hover:text-accent transition-colors" href="index.html">
+        Master Backend Engineering
+        <span class="text-accent">.</span>
+      </a>
+      <div class="hidden md:flex gap-8 text-sm font-medium text-secondary">
+        <a class="hover:text-primary transition-colors" href="index.html#about">About</a>
+        <a class="hover:text-primary transition-colors" href="index.html#services">Mentorship</a>
+        <a class="hover:text-primary transition-colors" href="blog.html">Blog</a>
+        <a class="hover:text-primary transition-colors" href="index.html#testimonials">Stories</a>
+      </div>
+      <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-accent hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5" href="index.html#services">
+        Book a Session
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden">
+    <div class="max-w-6xl mx-auto">
+      <div class="animate-slide-up" style="animation-delay: 0.1s;">
+        <h1 class="font-display text-5xl lg:text-6xl font-bold leading-[1.1] mb-6">
+          Articles & Insights
+        </h1>
+        <p class="text-lg text-secondary max-w-2xl mb-8 leading-relaxed">
+          Deep dives into backend engineering, system design principles, and strategies for growing into senior and staff-level roles.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Blog Posts Grid -->
+  <section class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+        <div id="blog-posts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Posts will be loaded here by JavaScript -->
+          <div class="col-span-full text-center py-12">
+            <p class="text-secondary">Loading articles...</p>
+          </div>
+        </div>
+        <div id="pagination" class="mt-8 flex justify-center items-center gap-4"></div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-12 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="font-display text-xl font-bold mb-2">Master Backend Engineering</h3>
+        <p class="text-gray-400">Mentorship for aspiring backend engineers and system designers.</p>
+      </div>
+      <div class="flex gap-6 md:justify-end">
+        <a class="text-gray-400 hover:text-white transition-colors" href="https://linkedin.com/in/paramjitsaha" target="_blank">LinkedIn</a>
+        <a class="text-gray-400 hover:text-white transition-colors" href="https://github.com" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+      <p>&copy; 2025 Master Backend Engineering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Marked.js for Markdown Parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    // List of markdown files to load (fallback).
+    // If `blogs/index.json` exists, it will be used instead for discovery.
+    const markdownFiles = [
+      'blogs/designing-scalable-systems.md',
+      'blogs/java-spring-boot-performance.md',
+      'blogs/senior-engineer-skills.md'
+    ];
+
+    // Try to load a pre-generated index file at build time.
+    async function discoverMarkdownFiles() {
+      const indexPaths = ['blogs/index.json', './blogs/index.json', '/blogs/index.json'];
+      for (const path of indexPaths) {
+        try {
+          const resp = await fetch(path);
+          if (!resp.ok) continue;
+          const list = await resp.json();
+          if (Array.isArray(list) && list.length) {
+              console.log("Found index at:", path);
+              return list;
+          }
+        } catch (e) {
+          // ignore and continue
+        }
+      }
+      return markdownFiles;
+    }
+
+    // Robust frontmatter and content parser
+    function parseFrontmatter(markdown) {
+      if (!markdown) return null;
+      const lines = markdown.split(/\r?\n/);
+      let start = -1;
+      let end = -1;
+      
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].trim() === '---') {
+          if (start === -1) start = i;
+          else {
+            end = i;
+            break;
+          }
+        }
+      }
+
+      if (start === -1 || end === -1) return null;
+
+      const metadata = {};
+      const fmContent = lines.slice(start + 1, end);
+      let lastKey = null;
+
+      for (let line of fmContent) {
+        // Match keys like "title: ..." or "tags:"
+        const keyMatch = line.match(/^\s*([\w-]+):\s*(.*)$/);
+        if (keyMatch) {
+          const key = keyMatch[1];
+          let value = keyMatch[2].trim();
+          
+          // Basic handle for inline arrays [a, b]
+          if (value.startsWith('[') && value.endsWith(']')) {
+            metadata[key] = value.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
+          } else {
+            // Remove optional surrounding quotes
+            metadata[key] = value.replace(/^["']|["']$/g, '');
+          }
+          lastKey = key;
+        } else {
+          // Match list items like "- Item"
+          const itemMatch = line.match(/^\s*-\s*(.*)$/);
+          if (itemMatch && lastKey) {
+            if (!Array.isArray(metadata[lastKey])) {
+              metadata[lastKey] = [];
+            }
+            metadata[lastKey].push(itemMatch[1].trim().replace(/^["']|["']$/g, ''));
+          }
+        }
+      }
+      
+      const content = lines.slice(end + 1).join('\n');
+      return { metadata, content };
+    }
+
+    // Load markdown files and extract metadata
+    async function loadBlogPosts() {
+      const blogPosts = [];
+      const files = await discoverMarkdownFiles();
+      
+      for (const file of files) {
+        // Construct an absolute path using the current origin to be safe
+        const absolutePath = new URL(file, window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/').href;
+        
+        const variants = [
+            file, 
+            './' + file, 
+            '/' + file, 
+            absolutePath
+        ];
+
+        console.log(`Trying to load ${file} with variants:`, variants);
+        let loaded = false;
+        
+        for (const path of variants) {
+          try {
+            const response = await fetch(path);
+            if (!response.ok) continue;
+
+            const markdown = await response.text();
+            const result = parseFrontmatter(markdown);
+            
+            if (result && result.metadata) {
+              const metadata = result.metadata;
+              // Fallback for ID if missing
+              if (!metadata.id) {
+                metadata.id = file.split('/').pop().replace('.md', '');
+              }
+              metadata.__source = path;
+              blogPosts.push(metadata);
+              loaded = true;
+              break; 
+            }
+          } catch (error) {
+            console.error(`Error loading ${file} from ${path}:`, error);
+          }
+        }
+      }
+
+      // Sort by date (newest first)
+      blogPosts.sort((a, b) => {
+        const dateA = new Date(a.date || 0);
+        const dateB = new Date(b.date || 0);
+        return dateB - dateA;
+      });
+
+      return blogPosts;
+    }
+
+    // Client-side pagination: 6 posts per page
+    const POSTS_PER_PAGE = 6;
+
+    function renderPage(posts, page = 1) {
+      const start = (page - 1) * POSTS_PER_PAGE;
+      const pagePosts = posts.slice(start, start + POSTS_PER_PAGE);
+      const container = document.getElementById('blog-posts');
+
+      container.innerHTML = pagePosts.map((post) => `
+        <article class="blog-card bg-white rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col">
+          <div class="p-6 flex-1 flex flex-col">
+            <div class="mb-4">
+              ${(post.tags || []).map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+            </div>
+            <h2 class="font-display text-xl font-bold mb-3 line-clamp-2 text-primary">
+              ${post.title}
+            </h2>
+            <p class="text-secondary text-sm mb-6 line-clamp-3 flex-1">
+              ${post.excerpt}
+            </p>
+            <div class="flex items-center justify-between text-xs text-secondary pt-4 border-t border-gray-100">
+              <span>${formatDate(post.date)}</span>
+              <span>${post.readTime} min read</span>
+            </div>
+          </div>
+          <a href="blog-post.html?id=${post.id}" class="px-6 py-3 border-t border-gray-100 text-accent font-semibold hover:bg-blue-50 transition-colors flex items-center gap-2">
+            Read Article
+            <i class="w-4 h-4" data-lucide="arrow-right"></i>
+          </a>
+        </article>
+      `).join('');
+
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    }
+
+    function renderPagination(posts, currentPage = 1) {
+      const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+      const pagination = document.getElementById('pagination');
+      if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+      }
+
+      const prevDisabled = currentPage <= 1 ? 'opacity-50 pointer-events-none' : '';
+      const nextDisabled = currentPage >= totalPages ? 'opacity-50 pointer-events-none' : '';
+
+      pagination.innerHTML = `
+        <button id="prevPage" class="px-4 py-2 bg-white border rounded ${prevDisabled}">Previous</button>
+        <span class="text-sm text-secondary">Page ${currentPage} of ${totalPages}</span>
+        <button id="nextPage" class="px-4 py-2 bg-white border rounded ${nextDisabled}">Next</button>
+      `;
+
+      document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage <= 1) return;
+        const newPage = currentPage - 1;
+        renderPage(posts, newPage);
+        renderPagination(posts, newPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      document.getElementById('nextPage').addEventListener('click', () => {
+        if (currentPage >= totalPages) return;
+        const newPage = currentPage + 1;
+        renderPage(posts, newPage);
+        renderPagination(posts, newPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Load and display blog posts with pagination
+    async function initializeBlog() {
+      console.log("Initializing blog...");
+      const blogPosts = await loadBlogPosts();
+      console.log("Final blog posts array:", blogPosts);
+      const container = document.getElementById('blog-posts');
+
+      if (blogPosts.length === 0) {
+        container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-secondary">No articles yet. Check back soon!</p></div>';
+        return;
+      }
+
+      // Render first page
+      renderPage(blogPosts, 1);
+      renderPagination(blogPosts, 1);
+    }
+
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('en-US', options);
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeBlog);
+    } else {
+      initializeBlog();
+    }
+
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSD4PSTE95"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VSD4PSTE95');
+  </script>
+</body>
+</html>
