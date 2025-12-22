@@ -246,7 +246,12 @@
         <a class="hover:text-primary transition-colors dark:hover:text-white" href="blog.html">Blog</a>
         <a class="hover:text-primary transition-colors dark:hover:text-white" href="index.html#testimonials">Stories</a>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 sm:gap-4">
+          <!-- Mobile Menu Button -->
+          <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle Menu">
+              <i class="w-5 h-5" data-lucide="menu"></i>
+          </button>
+
           <!-- Theme Toggle Button -->
           <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle Theme">
               <i id="sun-icon" class="w-5 h-5 hidden" data-lucide="sun"></i>
@@ -257,6 +262,16 @@
           </a>
       </div>
     </div>
+
+    <!-- Mobile Menu -->
+   <div id="mobile-menu" class="hidden absolute top-full left-0 w-full px-4 pb-4 md:hidden">
+      <div class="glass-panel rounded-2xl p-6 flex flex-col gap-4 shadow-xl">
+         <a class="text-lg font-medium text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white" href="index.html#about" onclick="toggleMobileMenu()">About</a>
+         <a class="text-lg font-medium text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white" href="index.html#services" onclick="toggleMobileMenu()">Mentorship</a>
+         <a class="text-lg font-medium text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white" href="blog.html" onclick="toggleMobileMenu()">Blog</a>
+         <a class="text-lg font-medium text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white" href="index.html#testimonials" onclick="toggleMobileMenu()">Stories</a>
+      </div>
+   </div>
   </nav>
 
   <!-- Article Content -->
@@ -332,6 +347,14 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <script>
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (menu) {
+            menu.classList.toggle('hidden');
+        }
+    }
+
     // List of markdown files (fallback). If `blogs/index.json` exists it will be used.
     const markdownFiles = [
       'blogs/designing-scalable-systems.md',
