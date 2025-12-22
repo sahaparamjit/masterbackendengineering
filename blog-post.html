@@ -12,8 +12,10 @@
   <!-- Icons & Tailwind -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme-manager.js"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -39,6 +41,10 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
+    .dark .glass-panel {
+      background: rgba(17, 24, 39, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
     .noise-bg {
       position: fixed;
@@ -57,6 +63,11 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    .dark .text-gradient {
+      background: linear-gradient(135deg, #f3f4f6 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
     /* Blog Content Styling */
     .blog-content {
@@ -72,6 +83,9 @@
       margin-bottom: 1rem;
       color: #111827;
     }
+    .dark .blog-content h2 {
+      color: #ffffff;
+    }
 
     .blog-content h3 {
       font-family: 'Space Grotesk', sans-serif;
@@ -81,10 +95,16 @@
       margin-bottom: 0.75rem;
       color: #111827;
     }
+    .dark .blog-content h3 {
+      color: #ffffff;
+    }
 
     .blog-content p {
       margin-bottom: 1.5rem;
       color: #374151;
+    }
+    .dark .blog-content p {
+      color: #d1d5db;
     }
 
     .blog-content ul, .blog-content ol {
@@ -96,6 +116,9 @@
       margin-bottom: 0.5rem;
       color: #374151;
     }
+    .dark .blog-content li {
+      color: #d1d5db;
+    }
 
     .blog-content code {
       background-color: #f3f4f6;
@@ -104,6 +127,10 @@
       font-family: 'Monaco', 'Courier New', monospace;
       font-size: 0.95rem;
       color: #111827;
+    }
+    .dark .blog-content code {
+      background-color: #1f2937;
+      color: #f3f4f6;
     }
 
     .blog-content pre {
@@ -117,11 +144,18 @@
       font-size: 0.9rem;
       line-height: 1.5;
     }
+    .dark .blog-content pre {
+      background-color: #000000;
+      border: 1px solid #374151;
+    }
 
     .blog-content pre code {
       background-color: transparent;
       padding: 0;
       color: inherit;
+    }
+    .dark .blog-content pre code {
+      background-color: transparent;
     }
 
     .blog-content blockquote {
@@ -131,6 +165,9 @@
       margin-bottom: 1.5rem;
       font-style: italic;
       color: #4b5563;
+    }
+    .dark .blog-content blockquote {
+      color: #9ca3af;
     }
 
     .blog-content img {
@@ -168,6 +205,10 @@
       padding: 1.5rem;
       margin: 2rem 0;
     }
+    .dark .toc {
+      background: #1f2937;
+      border-color: #374151;
+    }
 
     .toc h3 {
       margin-top: 0;
@@ -189,42 +230,49 @@
     }
   </style>
 </head>
-<body class="font-body bg-background text-primary antialiased selection:bg-accent selection:text-white">
+<body class="font-body bg-background text-primary antialiased selection:bg-accent selection:text-white dark:bg-gray-900 dark:text-gray-100">
   <div class="noise-bg"></div>
 
   <!-- Navigation -->
   <nav class="fixed w-full z-40 top-0 transition-all duration-300 p-4 sm:p-6">
-    <div class="max-w-6xl mx-auto glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-sm">
-      <a class="font-display font-bold text-lg tracking-tight hover:text-accent transition-colors" href="index.html">
+    <div class="max-w-6xl mx-auto glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-sm dark:bg-gray-800/80 dark:border-gray-700">
+      <a class="font-display font-bold text-lg tracking-tight hover:text-accent transition-colors dark:text-white" href="index.html">
         Master Backend Engineering
         <span class="text-accent">.</span>
       </a>
-      <div class="hidden md:flex gap-8 text-sm font-medium text-secondary">
-        <a class="hover:text-primary transition-colors" href="index.html#about">About</a>
-        <a class="hover:text-primary transition-colors" href="index.html#services">Mentorship</a>
-        <a class="hover:text-primary transition-colors" href="blog.html">Blog</a>
-        <a class="hover:text-primary transition-colors" href="index.html#testimonials">Stories</a>
+      <div class="hidden md:flex gap-8 text-sm font-medium text-secondary dark:text-gray-400">
+        <a class="hover:text-primary transition-colors dark:hover:text-white" href="index.html#about">About</a>
+        <a class="hover:text-primary transition-colors dark:hover:text-white" href="index.html#services">Mentorship</a>
+        <a class="hover:text-primary transition-colors dark:hover:text-white" href="blog.html">Blog</a>
+        <a class="hover:text-primary transition-colors dark:hover:text-white" href="index.html#testimonials">Stories</a>
       </div>
-      <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-accent hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5" href="index.html#services">
-        Book a Session
-      </a>
+      <div class="flex items-center gap-4">
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle Theme">
+              <i id="sun-icon" class="w-5 h-5 hidden" data-lucide="sun"></i>
+              <i id="moon-icon" class="w-5 h-5" data-lucide="moon"></i>
+          </button>
+          <a class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-accent hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 dark:bg-accent dark:hover:bg-cyan-500" href="index.html#services">
+            Book a Session
+          </a>
+      </div>
     </div>
   </nav>
 
   <!-- Article Content -->
-  <article class="pt-32 pb-20 px-6">
+  <article class="pt-32 pb-20 px-6 dark:bg-gray-900">
     <div class="max-w-3xl mx-auto">
       <!-- Meta Information -->
       <div class="mb-8">
         <div class="flex flex-wrap gap-2 mb-4" id="tags"></div>
-        <h1 id="title" class="font-display text-5xl lg:text-6xl font-bold leading-[1.1] mb-4"></h1>
-        <div class="flex items-center justify-between text-secondary text-sm border-b border-gray-200 pb-6">
+        <h1 id="title" class="font-display text-5xl lg:text-6xl font-bold leading-[1.1] mb-4 dark:text-white"></h1>
+        <div class="flex items-center justify-between text-secondary text-sm border-b border-gray-200 pb-6 dark:border-gray-800">
           <div class="flex items-center gap-4">
-            <span id="author"></span>
-            <span>•</span>
-            <span id="date"></span>
-            <span>•</span>
-            <span id="readTime"></span>
+            <span id="author" class="dark:text-gray-300"></span>
+            <span class="dark:text-gray-600">•</span>
+            <span id="date" class="dark:text-gray-300"></span>
+            <span class="dark:text-gray-600">•</span>
+            <span id="readTime" class="dark:text-gray-300"></span>
           </div>
         </div>
       </div>
@@ -233,7 +281,7 @@
       <div id="content" class="blog-content mt-12"></div>
 
       <!-- Back to Blog -->
-      <div class="mt-16 pt-8 border-t border-gray-200">
+      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
         <a href="blog.html" class="inline-flex items-center gap-2 text-accent font-semibold hover:text-accent/80 transition-colors">
           <i class="w-4 h-4" data-lucide="arrow-left"></i>
           Back to Blog
@@ -243,18 +291,18 @@
   </article>
 
   <!-- Footer -->
-  <footer class="bg-primary text-white py-12 border-t border-gray-800">
+  <footer class="bg-primary text-white py-12 border-t border-gray-800 dark:bg-black dark:border-gray-800">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
       <div>
         <h3 class="font-display text-xl font-bold mb-2">Master Backend Engineering</h3>
-        <p class="text-gray-400">Mentorship for aspiring backend engineers and system designers.</p>
+        <p class="text-gray-400 dark:text-gray-500">Mentorship for aspiring backend engineers and system designers.</p>
       </div>
       <div class="flex gap-6 md:justify-end">
         <a class="text-gray-400 hover:text-white transition-colors" href="https://linkedin.com/in/paramjitsaha" target="_blank">LinkedIn</a>
         <a class="text-gray-400 hover:text-white transition-colors" href="https://github.com" target="_blank">GitHub</a>
       </div>
     </div>
-    <div class="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+    <div class="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500 dark:border-gray-900">
       <p>&copy; 2025 Master Backend Engineering. All rights reserved.</p>
     </div>
   </footer>
