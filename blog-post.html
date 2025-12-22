@@ -6,7 +6,9 @@
   <title>Article | Master Backend Engineering</title>
   <meta content="Article from Master Backend Engineering" name="description"/>
   <!-- Fonts -->
-  <style type="text/css">@font-face {font-family:Space Grotesk;font-style:normal;font-weight:300;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:300;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:400;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Space Grotesk;font-style:normal;font-weight:700;src:url(/cf-fonts/v/space-grotesk/5.0.16/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <!-- Icons & Tailwind -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -342,27 +344,24 @@
     async function findMarkdownFile(postId) {
       const files = await discoverMarkdownFiles();
       for (const file of files) {
-        // Construct an absolute path using the current origin
-        const cleanFile = file.startsWith('/') ? file.slice(1) : file;
-        const absolutePath = new URL(cleanFile, window.location.origin + '/').href;
+        // Simple and robust path construction
+        let path = file;
+        if (!file.startsWith('http') && !file.startsWith('/')) {
+            path = './' + file;
+        }
 
-        const variants = [file, './' + file, '/' + file, absolutePath];
-        for (const path of variants) {
-          try {
-            const response = await fetch(path);
-            if (!response.ok) continue;
+        try {
+          const response = await fetch(path);
+          if (!response.ok) continue;
 
-            const markdown = await response.text();
-            const result = parseFrontmatter(markdown);
+          const markdown = await response.text();
+          const result = parseFrontmatter(markdown);
 
-            if (result && result.metadata && result.metadata.id === postId) {
-              return path; 
-            }
-            // If the metadata didn't match the ID, we stop trying variants for THIS file
-            if (result && result.metadata) break;
-          } catch (error) {
-            // console.error(`Error checking ${path}:`, error);
+          if (result && result.metadata && result.metadata.id === postId) {
+            return path; 
           }
+        } catch (error) {
+           console.error(`Error checking ${path}:`, error);
         }
       }
       return null;
