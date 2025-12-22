@@ -274,6 +274,19 @@
             <span class="dark:text-gray-600">•</span>
             <span id="readTime" class="dark:text-gray-300"></span>
           </div>
+          <!-- Social Share Buttons -->
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold uppercase tracking-wider dark:text-gray-500">Share:</span>
+            <button onclick="shareToLinkedIn()" class="p-2 rounded-full bg-gray-100 hover:bg-[#0077b5] hover:text-white transition-all dark:bg-gray-800 dark:hover:bg-[#0077b5]" aria-label="Share on LinkedIn">
+              <i class="w-4 h-4" data-lucide="linkedin"></i>
+            </button>
+            <button onclick="shareToTwitter()" class="p-2 rounded-full bg-gray-100 hover:bg-black hover:text-white transition-all dark:bg-gray-800 dark:hover:bg-black" aria-label="Share on X (Twitter)">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            </button>
+            <button onclick="copyLink()" class="p-2 rounded-full bg-gray-100 hover:bg-accent hover:text-white transition-all dark:bg-gray-800 dark:hover:bg-accent" aria-label="Copy Link">
+              <i class="w-4 h-4" data-lucide="link"></i>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -427,6 +440,27 @@
     function formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString('en-US', options);
+    }
+
+    // Social Sharing Functions
+    function shareToLinkedIn() {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    }
+
+    function shareToTwitter() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(document.title);
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('Link copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
     }
 
     // Load related posts based on tags
